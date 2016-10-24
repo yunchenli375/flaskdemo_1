@@ -45,7 +45,7 @@ def get_page(search_term):
             title = page_titles[2]
         else:
             title = page_titles[1]
-        page = get_page(wikipedia.page(title))
+        page = wikipedia.page(title)
     return page
 
 
