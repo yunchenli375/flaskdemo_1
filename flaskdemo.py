@@ -7,34 +7,26 @@ app = Flask(__name__)
 # RuntimeError: The session is unavailable because no secret key was set.
 # Storing secrets in plain code like this is not good practice. We know it.
 # We don't want you to think we're endorsing this practice!
-app.secret_key = 'IT@JCUA0Zr98j/3yXa R~XHH!jmN]LWX/,?RT'
+app.secret_key = "IT@JCUA0Zr98j/3yXa R~XHH!jmN]LWX/,?RT"
 
 
-@app.route('/')
 def home():
     """Home page route."""
     return render_template("home.html")
 
 
-@app.route('/about')
 def about():
     """About page route."""
-    return "I am still working on this"
+    return render_template("about.html")
 
 
-@app.route('/search', methods=['POST', 'GET'])
 def search():
     """Search page route. Return either form page to search, or search results."""
-    if request.method == 'POST':
-        session['search_term'] = request.form['search']
-        return redirect(url_for('results'))
     return render_template("search.html")
 
 
-@app.route('/results')
 def results():
     """Results page route. Render the search results."""
-    search_term = session['search_term']
     page = get_page(search_term)
     return render_template("results.html", page=page)
 
@@ -59,5 +51,4 @@ def get_page(search_term):
     return page
 
 
-if __name__ == '__main__':
     app.run()
