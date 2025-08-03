@@ -10,21 +10,25 @@ app = Flask(__name__)
 app.secret_key = "IT@JCUA0Zr98j/3yXa R~XHH!jmN]LWX/,?RT"
 
 
+@app.route("/")
 def home():
     """Home page route."""
     return render_template("home.html")
 
 
+@app.route("/about")
 def about():
     """About page route."""
     return render_template("about.html")
 
 
+@app.route("/search", methods=["POST", "GET"])
 def search():
     """Search page route. Return either form page to search, or search results."""
     return render_template("search.html")
 
 
+@app.route("/results")
 def results():
     """Results page route. Render the search results."""
     page = get_page(search_term)
