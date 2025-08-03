@@ -25,6 +25,9 @@ def about():
 @app.route("/search", methods=["POST", "GET"])
 def search():
     """Search page route. Return either form page to search, or search results."""
+    if request.method == "POST":
+        session["search_term"] = request.form["search"]
+        return redirect(url_for("results"))
     return render_template("search.html")
 
 
