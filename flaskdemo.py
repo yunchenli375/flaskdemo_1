@@ -34,6 +34,7 @@ def search():
 @app.route("/results")
 def results():
     """Results page route. Render the search results."""
+    search_term = session["search_term"]
     page = get_page(search_term)
     return render_template("results.html", page=page)
 
